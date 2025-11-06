@@ -7,9 +7,9 @@ function App() {
   return (
     <Box>
       <Layout>
-        <AppRoutes />
-
-        
+        <Box sx={{ mt: 6, mb: 4 }}>
+          <AppRoutes />
+        </Box>
       </Layout>
     </Box>
   );
