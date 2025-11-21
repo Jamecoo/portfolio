@@ -23,6 +23,7 @@ import {
   WORK_PAGE_PATH,
 } from "../../routes/config";
 import { TL_ICON } from "../../constant/icon";
+import { colors } from "../../themes/colors";
 
 interface Props {
   window?: () => Window;
@@ -94,7 +95,12 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <CssBaseline />
       <HideOnScroll>
-        <AppBar sx={{ backgroundColor: "#000" }}>
+        <AppBar
+          sx={{
+            backgroundColor: "#1B1E27",
+            boxShadow: "0 0 6px rgba(58,125,255,0.25)", // subtle neon glow
+          }}
+        >
           <Toolbar>
             <Box
               sx={{
@@ -110,13 +116,18 @@ export default function Layout({ children }: LayoutProps) {
                   fontWeight: "bold",
                   fontSize: "1.5rem",
                   cursor: "pointer",
+                  color: "#E6E9F0",
                 }}
                 onClick={() => handleNavigation(HOME_PAGE_PATH)}
               >
                 <img
-                  style={{ width: "20%", height: "20%" }}
+                  style={{
+                    width: "20%",
+                    height: "20%",
+                    filter: "drop-shadow(0 0 4px rgba(58,125,255,0.6))",
+                  }}
                   src={TL_ICON}
-                  alt="JameCo Icon"
+                  alt="TL Icon"
                 />
               </Typography>
             </Box>
@@ -126,16 +137,23 @@ export default function Layout({ children }: LayoutProps) {
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 justifyContent: "center",
-                color: "#3B3B3B",
+                color: "#E6E9F0",
               }}
             >
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ cursor: "pointer" }}
+                sx={{
+                  cursor: "pointer",
+                  "&:hover": {
+                    color: `${colors.primary.main}`,
+                    transition: "0.3s",
+                    fontWeight: "bold",
+                  },
+                }}
                 onClick={() => handleNavigation("/home")}
               >
-                Thadsphone Lammayoth
+                Thadsaphone Lammayoth
               </Typography>
             </Box>
 
@@ -143,7 +161,13 @@ export default function Layout({ children }: LayoutProps) {
               {menuItems.map((item) => (
                 <Button
                   key={item.label}
-                  sx={{ color: "white", textTransform: "none" }}
+                  sx={{
+                    color: "#E6E9F0",
+                    textTransform: "none",
+                    "&:hover": {
+                      color: "#3A7DFF",
+                    },
+                  }}
                   onClick={() => handleNavigation(item.path)}
                 >
                   {item.label}
@@ -151,6 +175,7 @@ export default function Layout({ children }: LayoutProps) {
               ))}
             </Box>
 
+            {/* Mobile Menu Button */}
             <IconButton
               color="inherit"
               aria-label="open drawer"
